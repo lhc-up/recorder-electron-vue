@@ -111,6 +111,15 @@ module.exports = {
                         name: './images/[name].[ext]'
                     }
                 }]
+            },
+            {
+                test: /\.worker\.js$/,
+                use: [{
+                    loader: 'worker-loader',
+                    options: {
+                        inline: 'no-fallback'
+                    }
+                }]
             }
         ]
     },
