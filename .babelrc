@@ -1,30 +1,9 @@
 {
-  "comments": false,
-  "env": {
-    "main": {
       "presets": [
-        ["env", {
-          "targets": { "node": 7 }
-        }],
-        "stage-0"
+          "@babel/preset-env"
+      ],
+      "plugins": [
+          "@babel/syntax-dynamic-import",
+          "@babel/proposal-function-bind"
       ]
-    },
-    "renderer": {
-      "presets": [
-        ["env", {
-          "modules": false
-        }],
-        "stage-0"
-      ]
-    },
-    "web": {
-      "presets": [
-        ["env", {
-          "modules": false
-        }],
-        "stage-0"
-      ]
-    }
-  },
-  "plugins": ["transform-runtime"]
-}
+  }
