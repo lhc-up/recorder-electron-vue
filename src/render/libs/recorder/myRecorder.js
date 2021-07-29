@@ -1,7 +1,5 @@
 import AudioRecorder from './recorder.js';
 import MP3Converter from './convertMP3/index.js';
-const path = require('path');
-const fs = require('fs');
 
 function Recorder(option={}) {
     this.supported = false;//是否支持
@@ -116,8 +114,12 @@ function Recorder(option={}) {
         // 每次插拔耳机，ondevicechange会被调用2次
         // 第一次被调用是在getUserMedia的回调里，此时设备信息是变化之前的
         // 第二次被调用是在订阅的事件里,此时设备信息是变化之后的
+        let changeTimes = 0;
         navigator.mediaDevices.ondevicechange = async (event) => {
-            this.fire('devicechange');
+            changeTimes++;
+            if (changeTimes % 2 === 0) {
+                this.fire('devicechange');
+            }
         }
     }
     // 重新初始化，针对当前使用的设备被拔出的情况
